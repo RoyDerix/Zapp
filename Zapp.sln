@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zapp.Android", "Zapp\Zapp.Android\Zapp.Android.csproj", "{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zapp", "Zapp\Zapp\Zapp.csproj", "{7540AADB-75D9-439A-B113-40BE442EE45D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C3F3D4-ACAC-4FB2-8A47-E0C8BD006F87}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7540AADB-75D9-439A-B113-40BE442EE45D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D88B8B66-D27A-48FD-97BD-82098FBEC097}
+	EndGlobalSection
+EndGlobal
