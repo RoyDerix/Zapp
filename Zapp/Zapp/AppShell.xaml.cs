@@ -10,6 +10,8 @@ namespace Zapp
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(Detailpagina), typeof(Detailpagina));
+
         }
 
     }

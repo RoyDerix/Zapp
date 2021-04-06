@@ -3,13 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Zapp.Views.Homepage"
              Title="Homepage">
-    <ListView x:Name="KlantenListView">
+    <ListView x:Name="KlantenCollectionView"
+              SelectionMode="Single"
+              ItemSelected="OnItemSelected">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding datum}" TextColor="Black"></Label>
+                        <Label Text="{Binding opmerkingen}" TextColor="Black"></Label>
                         <Label Text="{Binding voornaam}" TextColor="Black"></Label>
                         <Label Text="{Binding achternaam}" TextColor="Black"></Label>
+
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

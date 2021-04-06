@@ -64,6 +64,42 @@ namespace Zapp
 
 
         /// Specifics
+        /// 
+        //public Klant createOpdracht(OpdrachtPost opdracht)
+        //{
+        //    string json = JsonSerializer.Serialize(opdracht);
+        //    string result = putData(Config.saveKlanten, json);
+        //    Opdracht newOpdracht = new JavaScriptSerializer().Deserialize<Opdracht>(result);
+
+        //    return (newOpdracht);
+        //}
+
+        public OpdrachtenLijst getOpdrachten()
+        {
+            string result = fetchData(Config.getOpdrachten);
+            var allOpdrachten = new JavaScriptSerializer().Deserialize<OpdrachtenLijst>(result);
+
+            return (allOpdrachten);
+        }
+
+        public async void saveDbOpdrachten()
+        {
+            var opdrachtenlijst = getOpdrachten();
+
+            var alleOpdrachten = opdrachtenlijst.entries;
+
+            foreach (var opdracht in alleOpdrachten)
+            {
+                try
+                {
+                    await App.Database.SaveOpdracht(opdracht);
+                }
+                catch
+                {
+                    await App.Database.UpdateOpdracht(opdracht);
+                }
+            }
+        }
 
         public Klant createKlant(KlantPost klant)
         {
@@ -97,6 +133,43 @@ namespace Zapp
                 catch
                 {
                     await App.Database.UpdateKlant(klant);
+                }
+            }
+        }
+
+
+        //public Klant createTaak(TaakPost taak)
+        //{
+        //    string json = JsonSerializer.Serialize(taak);
+        //    string result = putData(Config.saveTaken, json);
+        //    Taak newTaak = new JavaScriptSerializer().Deserialize<Taak>(result);
+
+        //    return (newTaak);
+        //}
+
+        public TakenLijst getTaken()
+        {
+            string result = fetchData(Config.getTaken);
+            var allTaken = new JavaScriptSerializer().Deserialize<TakenLijst>(result);
+
+            return (allTaken);
+        }
+
+        public async void saveDbTaken()
+        {
+            var takenlijst = getTaken();
+
+            var alleTaken = takenlijst.entries;
+
+            foreach (var taak in alleTaken)
+            {
+                try
+                {
+                    await App.Database.SaveTaak(taak);
+                }
+                catch
+                {
+                    await App.Database.UpdateTaak(taak);
                 }
             }
         }

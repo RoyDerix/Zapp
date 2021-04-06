@@ -30,7 +30,9 @@ namespace Zapp.Droid
         {
             base.OnResume();
             Main main = new Main();
+            main.saveDbOpdrachten();
             main.saveDbKlanten();
+            main.saveDbTaken();
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 
