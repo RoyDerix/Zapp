@@ -4,6 +4,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Zapp.Views;
 using Zapp.Data;
+using System.Collections.Generic;
+using Zapp.Models;
+using System.Threading.Tasks;
 
 namespace Zapp
 {
@@ -28,8 +31,15 @@ namespace Zapp
         public App()
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
+            var users = Database.GetUsers();
+            if (users.Result.Count == 0)
+            {
+                MainPage = new LoginPage();
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()

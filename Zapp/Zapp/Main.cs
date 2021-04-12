@@ -62,17 +62,23 @@ namespace Zapp
             return (result);
         }
 
+        public User authUser(AuthUser authUser)
+        {
+            string json = JsonSerializer.Serialize(authUser);
+            string result = putData(Config.authUser, json);
+            User user = new JavaScriptSerializer().Deserialize<User>(result);
 
-        /// Specifics
-        /// 
-        //public Klant createOpdracht(OpdrachtPost opdracht)
-        //{
-        //    string json = JsonSerializer.Serialize(opdracht);
-        //    string result = putData(Config.saveKlanten, json);
-        //    Opdracht newOpdracht = new JavaScriptSerializer().Deserialize<Opdracht>(result);
+            return (user);
+        }
 
-        //    return (newOpdracht);
-        //}
+        public Opdracht createOpdracht(OpdrachtPost opdracht)
+        {
+            string json = JsonSerializer.Serialize(opdracht);
+            string result = putData(Config.saveOpdrachten, json);
+            Opdracht newOpdracht = new JavaScriptSerializer().Deserialize<Opdracht>(result);
+
+            return (newOpdracht);
+        }
 
         public OpdrachtenLijst getOpdrachten()
         {
@@ -138,14 +144,14 @@ namespace Zapp
         }
 
 
-        //public Klant createTaak(TaakPost taak)
-        //{
-        //    string json = JsonSerializer.Serialize(taak);
-        //    string result = putData(Config.saveTaken, json);
-        //    Taak newTaak = new JavaScriptSerializer().Deserialize<Taak>(result);
+        public Taak createTaak(TaakPost taak)
+        {
+            string json = JsonSerializer.Serialize(taak);
+            string result = putData(Config.saveTaken, json);
+            Taak newTaak = new JavaScriptSerializer().Deserialize<Taak>(result);
 
-        //    return (newTaak);
-        //}
+            return (newTaak);
+        }
 
         public TakenLijst getTaken()
         {

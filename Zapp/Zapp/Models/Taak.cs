@@ -20,5 +20,15 @@ namespace Zapp.Models
         public List<Taak> entries { get; set; }
     }
 
+    public class TaakPost
+    {
+        public TaakPost(Taak taak)
+        {
+            this.data = taak;
+        }
+
+        public Taak data { get; set; }
+    }
+
 }
 

@@ -20,7 +20,8 @@ namespace Zapp.Views
 
         async private void getOpdrachten()
         {
-            var opdrachten = await App.Database.GetOpdrachten();
+            var users = App.Database.GetUsers();
+            var opdrachten = await App.Database.GetAllOpdrachten();
             List<OpdrachtCompleet> data = new List<OpdrachtCompleet>();
 
             foreach (var opdracht in opdrachten)
@@ -31,6 +32,7 @@ namespace Zapp.Views
                 {
                     datum = opdracht.datum,
                     aangemeld = opdracht.aangemeld,
+                    afgemeld = opdracht.afgemeld,
                     opmerkingen = opdracht.opmerkingen,
                     voornaam = klant.voornaam,
                     achternaam = klant.achternaam,
@@ -38,6 +40,7 @@ namespace Zapp.Views
                     postcode = klant.postcode,
                     woonplaats = klant.woonplaats,
                     telefoonnummer = klant.telefoonnummer,
+                    user = opdracht.user,
                     _id = opdracht._id,
                     id = opdracht.id
                 });
@@ -45,12 +48,12 @@ namespace Zapp.Views
             KlantenCollectionView.ItemsSource = data;
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (e.SelectedItem != null)
+            if (e.Item != null)
             {
-                OpdrachtCompleet opdracht = (OpdrachtCompleet)e.SelectedItem;
-                await Shell.Current.GoToAsync($"{nameof(Detailpagina)}?{nameof(Detailpagina.ItemId)}={opdracht.id}");
+                OpdrachtCompleet opdracht = (OpdrachtCompleet)e.Item;
+                await Shell.Current.GoToAsync($"{nameof(Detailpagina)}?{nameof(Detailpagina.OpdrachtId)}={opdracht.id}");
             }
         }
     }

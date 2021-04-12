@@ -1,16 +1,49 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Zapp.Views.Detailpagina"
-             Title="Detailpagina">
-    <ListView x:Name="TakenListView">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding titel}" TextColor="Black"></Label>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-</ContentPage>
+﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+            x:Class="Zapp.Views.Detailpagina"
+            Title="Details"
+            x:Name="Details">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="{Binding voornaam}" />
+        <ToolbarItem Text="{Binding achternaam}" />
+    </TabbedPage.ToolbarItems>
+    
+
+    <ContentPage Title="Taken">
+        <StackLayout>
+            <ListView x:Name="TakenListView"
+                  SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding titel}" TextColor="Black" />
+                                <CheckBox IsChecked="{Binding uitgevoerd}" CheckedChanged="OnCheckBoxCheckedChanged" BindingContext="{Binding .}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Aanmelden/Afmelden"
+                    x:Name="AanAfmelden"
+                    Clicked="OnButtonClicked"/>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Adres" x:Name="AdresLabel">
+        <StackLayout>
+            <Label Text="{Binding voornaam}" />
+            <Label Text="{Binding achternaam}" />
+            <Label Text="{Binding adres}" />
+            <Label Text="{Binding postcode}" />
+            <Label Text="{Binding woonplaats}" />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Kaart">
+        <maps:Map x:Name="map" />
+    </ContentPage>
+
+</TabbedPage>

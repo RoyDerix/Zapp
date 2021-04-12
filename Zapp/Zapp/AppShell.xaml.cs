@@ -11,7 +11,7 @@ namespace Zapp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(Detailpagina), typeof(Detailpagina));
-
+            Routing.RegisterRoute(nameof(Homepage), typeof(Homepage));
         }
 
     }

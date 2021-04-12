@@ -4,8 +4,8 @@
              x:Class="Zapp.Views.Homepage"
              Title="Homepage">
     <ListView x:Name="KlantenCollectionView"
-              SelectionMode="Single"
-              ItemSelected="OnItemSelected">
+              SelectionMode="None"
+              ItemTapped="OnItemTapped">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

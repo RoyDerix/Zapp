@@ -15,11 +15,17 @@ namespace Zapp.Data
             database.CreateTableAsync<Opdracht>().Wait();
             database.CreateTableAsync<Klant>().Wait();
             database.CreateTableAsync<Taak>().Wait();
+            database.CreateTableAsync<User>().Wait();
         }
 
-        public Task<List<Opdracht>> GetOpdrachten()
+        public Task<List<Opdracht>> GetAllOpdrachten()
         {
             return database.Table<Opdracht>().ToListAsync();
+        }
+
+        public Task<List<Opdracht>> GetOpdrachten(string id)
+        {
+            return database.QueryAsync<Opdracht>("SELECT * FROM [Opdracht] WHERE [user] = " + id);
         }
 
         public Task<Opdracht> GetOpdracht(string id)
@@ -61,9 +67,14 @@ namespace Zapp.Data
             return database.InsertAsync(klant);
         }
 
-        public Task<List<Taak>> GetTaken()
+        public Task<List<Taak>> GetAllTaken()
         {
             return database.Table<Taak>().ToListAsync();
+        }
+        
+        public Task<List<Taak>> GetTaken(string id)
+        {
+            return database.QueryAsync<Taak>("SELECT * FROM [Taak] WHERE [opdracht] = " + id);
         }
 
         public Task<Taak> GetTaak(string id)
@@ -83,5 +94,20 @@ namespace Zapp.Data
             return database.InsertAsync(taak);
         }
 
+        public Task<int> SaveUser(User user)
+        {
+            try
+            {
+                return database.InsertAsync(user);
+            }
+            catch
+            {
+                return database.UpdateAsync(user);
+            }
+        }
+        public Task<List<User>> GetUsers()
+        {
+            return database.Table<User>().ToListAsync();
+        }
     }
 }

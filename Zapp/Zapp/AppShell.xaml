@@ -8,8 +8,5 @@
         <ShellContent Title="Homepage"
                       Icon="icon_feed.png"
                       ContentTemplate="{DataTemplate views:Homepage}" />
-        <ShellContent Title="Homepage2"
-                      Icon="icon_feed.png"
-                      ContentTemplate="{DataTemplate views:Homepage2}" />
     </TabBar>
 </Shell>
