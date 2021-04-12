@@ -20,14 +20,15 @@ namespace Zapp.Views
 
         async public void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            //AuthUser authUser = new AuthUser()
-            //{
-            //    user = username.Text,
-            //    password = password.Text
-            //};
-            //Main main = new Main();
-            //User user = main.authUser(authUser);
-            //await App.Database.SaveUser(user);
+            AuthUser authUser = new AuthUser()
+            {
+                user = username.Text,
+                password = password.Text
+            };
+            Main main = new Main();
+            User user = main.authUser(authUser);
+            await App.Database.SaveUser(user);
+            await Navigation.PopAsync();
             await Navigation.PushAsync(new Homepage());
         }
     }

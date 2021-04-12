@@ -31,14 +31,14 @@ namespace Zapp
         public App()
         {
             InitializeComponent();
-            var users = Database.GetUsers();
+            var users = Database.GetUsers(); 
             if (users.Result.Count == 0)
             {
-                MainPage = new LoginPage();
+                MainPage = new NavigationPage(new LoginPage());
             }
             else
             {
-                MainPage = new AppShell();
+                MainPage = new NavigationPage(new Homepage());
             }
         }
 

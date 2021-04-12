@@ -105,6 +105,12 @@ namespace Zapp.Data
                 return database.UpdateAsync(user);
             }
         }
+
+        public void Logout()
+        {
+            var user = database.QueryAsync<User>("DELETE FROM [User]");
+
+        }
         public Task<List<User>> GetUsers()
         {
             return database.Table<User>().ToListAsync();

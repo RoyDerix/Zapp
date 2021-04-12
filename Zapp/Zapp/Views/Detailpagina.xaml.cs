@@ -26,9 +26,10 @@ namespace Zapp.Views
 
         public string OpdrachtId2;
 
-        public Detailpagina()
+        public Detailpagina(OpdrachtCompleet opdracht)
         {
             InitializeComponent();
+            OpdrachtId = opdracht.id;
 
         }
 
