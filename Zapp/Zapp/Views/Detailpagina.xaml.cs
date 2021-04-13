@@ -21,11 +21,10 @@ namespace Zapp.Views
         {
             opdrachtCompleet = opdracht;
             ds = new DataService();
-            LoadTaken(opdracht.id);
-            LoadKlant(opdracht.id);
-            //Details.BindingContext = opdracht;
 
             InitializeComponent();
+            LoadTaken(opdracht.id);
+            Details.BindingContext = opdracht;
         }
 
         async void LoadTaken(string id)
@@ -39,14 +38,6 @@ namespace Zapp.Views
             {
                 Console.WriteLine("Failed to load opdracht.");
             }
-        }
-
-        private async void LoadKlant(string id)
-        {
-            var opdracht = await App.Database.GetOpdracht(id);
-            var klant = await App.Database.GetKlant(opdracht.klant);
-            Details.BindingContext = klant;
-
         }
 
         void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)

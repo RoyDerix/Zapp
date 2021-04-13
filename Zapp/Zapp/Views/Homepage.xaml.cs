@@ -15,10 +15,10 @@ namespace Zapp.Views
         public Homepage()
         {
             InitializeComponent();
-            getOpdrachten();
+            GetOpdrachten();
         }
 
-        async private void getOpdrachten()
+        async private void GetOpdrachten()
         {
             var users = App.Database.GetUsers();
             var user_id = users.Result[0]._id;
