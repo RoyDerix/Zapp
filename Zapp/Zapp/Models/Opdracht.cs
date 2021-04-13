@@ -22,8 +22,7 @@ namespace Zapp.Models
         public string aangemeld { get; set; }
         public string afgemeld { get; set; }
         public string opmerkingen { get; set; }
-        public string voornaam { get; set; }
-        public string achternaam { get; set; }
+        public string naam { get; set; }
         public string adres { get; set; }
         public string postcode { get; set; }
         public string woonplaats { get; set; }

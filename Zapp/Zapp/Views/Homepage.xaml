@@ -8,19 +8,39 @@
         <ToolbarItem Text="Logout" Clicked="Logout" />
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="KlantenCollectionView"
+    <ListView x:Name="OpdrachtListView"
               SelectionMode="None"
-              ItemTapped="OnItemTapped">
+              ItemTapped="OnItemTapped"
+              RowHeight="130">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding datum}" TextColor="Black"></Label>
-                        <Label Text="{Binding opmerkingen}" TextColor="Black"></Label>
-                        <Label Text="{Binding voornaam}" TextColor="Black"></Label>
-                        <Label Text="{Binding achternaam}" TextColor="Black"></Label>
+                    <Grid Margin="0"
+                          ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    </StackLayout>
+                        <Label Grid.Column="0" Text="{Binding naam}" TextColor="Black" FontSize="Large" />
+                        <Label Grid.Column="1" Text="{Binding datum}" TextColor="Black" HorizontalOptions="Start"/>
+                        
+                        <StackLayout Orientation="Horizontal" Grid.Row="1">
+                            <Label Text="{Binding adres}" FontSize="16"/>
+                            <Label Text="{Binding postcode}" FontSize="16"/>
+                            <Label Text="{Binding woonplaats}" FontSize="16"/>
+                        </StackLayout>
+                        
+                        <Label Grid.Row="2" Text="{Binding opmerkingen}"/>
+
+                    </Grid>
+                    
+
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

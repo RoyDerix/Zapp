@@ -8,9 +8,11 @@ using Zapp.Models;
 
 
 using Nancy.Json;
+using System.Threading.Tasks;
+
 namespace Zapp
 {
-    public class Main
+    public class ApiService
     {
         /**
          * Generic: fetchData
@@ -80,31 +82,12 @@ namespace Zapp
             return (newOpdracht);
         }
 
-        public OpdrachtenLijst getOpdrachten()
+        public OpdrachtenLijst getApiOpdrachten()
         {
             string result = fetchData(Config.getOpdrachten);
-            var allOpdrachten = new JavaScriptSerializer().Deserialize<OpdrachtenLijst>(result);
+            var opdrachtenlijst = new JavaScriptSerializer().Deserialize<OpdrachtenLijst>(result);
 
-            return (allOpdrachten);
-        }
-
-        public async void saveDbOpdrachten()
-        {
-            var opdrachtenlijst = getOpdrachten();
-
-            var alleOpdrachten = opdrachtenlijst.entries;
-
-            foreach (var opdracht in alleOpdrachten)
-            {
-                try
-                {
-                    await App.Database.SaveOpdracht(opdracht);
-                }
-                catch
-                {
-                    await App.Database.UpdateOpdracht(opdracht);
-                }
-            }
+            return (opdrachtenlijst);
         }
 
         public Klant createKlant(KlantPost klant)
@@ -116,33 +99,13 @@ namespace Zapp
             return (newKlant);
         }
 
-        public KlantenLijst getKlanten()
+        public KlantenLijst getApiKlanten()
         {
             string result = fetchData(Config.getKlanten);
-            var allKlanten = new JavaScriptSerializer().Deserialize<KlantenLijst>(result);
+            var klantenlijst = new JavaScriptSerializer().Deserialize<KlantenLijst>(result);
 
-            return (allKlanten);
+            return (klantenlijst);
         }
-
-        public async void saveDbKlanten()
-        {
-            var klantenlijst = getKlanten();
-
-            var alleKlanten = klantenlijst.entries;
-
-            foreach (var klant in alleKlanten)
-            {
-                try
-                {
-                    await App.Database.SaveKlant(klant);
-                }
-                catch
-                {
-                    await App.Database.UpdateKlant(klant);
-                }
-            }
-        }
-
 
         public Taak createTaak(TaakPost taak)
         {
@@ -153,31 +116,12 @@ namespace Zapp
             return (newTaak);
         }
 
-        public TakenLijst getTaken()
+        public TakenLijst getApiTaken()
         {
             string result = fetchData(Config.getTaken);
             var allTaken = new JavaScriptSerializer().Deserialize<TakenLijst>(result);
 
             return (allTaken);
-        }
-
-        public async void saveDbTaken()
-        {
-            var takenlijst = getTaken();
-
-            var alleTaken = takenlijst.entries;
-
-            foreach (var taak in alleTaken)
-            {
-                try
-                {
-                    await App.Database.SaveTaak(taak);
-                }
-                catch
-                {
-                    await App.Database.UpdateTaak(taak);
-                }
-            }
         }
 
     }

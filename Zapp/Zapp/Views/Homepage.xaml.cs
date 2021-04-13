@@ -22,36 +22,30 @@ namespace Zapp.Views
         {
             var users = App.Database.GetUsers();
             var user_id = users.Result[0]._id;
-            //var opdrachten = await App.Database.GetOpdrachten(user_id);
-            var opdrachten = await App.Database.GetAllOpdrachten();
+            var opdrachten = await App.Database.GetOpdrachten(user_id);
             List<OpdrachtCompleet> data = new List<OpdrachtCompleet>();
 
             foreach (var opdracht in opdrachten)
             {
-                if (opdracht.user == user_id)
+                string klant_id = opdracht.klant;
+                var klant = await App.Database.GetKlant(klant_id);
+                data.Add(new OpdrachtCompleet()
                 {
-
-                    string klant_id = opdracht.klant;
-                    var klant = await App.Database.GetKlant(klant_id);
-                    data.Add(new OpdrachtCompleet()
-                    {
-                        datum = opdracht.datum,
-                        aangemeld = opdracht.aangemeld,
-                        afgemeld = opdracht.afgemeld,
-                        opmerkingen = opdracht.opmerkingen,
-                        voornaam = klant.voornaam,
-                        achternaam = klant.achternaam,
-                        adres = klant.adres,
-                        postcode = klant.postcode,
-                        woonplaats = klant.woonplaats,
-                        telefoonnummer = klant.telefoonnummer,
-                        user = opdracht.user,
-                        _id = opdracht._id,
-                        id = opdracht.id
-                    });
-                }
+                    datum = opdracht.datum,
+                    aangemeld = opdracht.aangemeld,
+                    afgemeld = opdracht.afgemeld,
+                    opmerkingen = opdracht.opmerkingen,
+                    naam = klant.voornaam + " " + klant.achternaam,
+                    adres = klant.adres,
+                    postcode = klant.postcode,
+                    woonplaats = klant.woonplaats,
+                    telefoonnummer = klant.telefoonnummer,
+                    user = opdracht.user,
+                    _id = opdracht._id,
+                    id = opdracht.id
+                });
             }
-            KlantenCollectionView.ItemsSource = data;
+            OpdrachtListView.ItemsSource = data;
         }
 
         async void OnItemTapped(object sender, ItemTappedEventArgs e)
@@ -65,8 +59,13 @@ namespace Zapp.Views
 
         async public void Logout(object sender, EventArgs e)
         {
-            App.Database.Logout();
-            await Navigation.PushAsync(new LoginPage());
+            bool answer = await DisplayAlert("Uitloggen", "Wil je uitloggen?", "Uitloggen", "Cancel");
+            if (answer == true)
+            {
+                App.Database.Logout();
+                await Navigation.PopAsync();
+                await Navigation.PushAsync(new LoginPage());
+            }
 
         }
     }

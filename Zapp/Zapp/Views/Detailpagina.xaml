@@ -6,8 +6,7 @@
             x:Name="Details">
 
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="{Binding voornaam}" />
-        <ToolbarItem Text="{Binding achternaam}" />
+        <ToolbarItem Text="{Binding naam}" />
     </TabbedPage.ToolbarItems>
     
 
@@ -34,8 +33,7 @@
 
     <ContentPage Title="Adres" x:Name="AdresLabel">
         <StackLayout>
-            <Label Text="{Binding voornaam}" />
-            <Label Text="{Binding achternaam}" />
+            <Label Text="{Binding naam}" />
             <Label Text="{Binding adres}" />
             <Label Text="{Binding postcode}" />
             <Label Text="{Binding woonplaats}" />

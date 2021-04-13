@@ -7,30 +7,25 @@ using Zapp.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Zapp.Services;
 
 namespace Zapp.Views
 {
-    [QueryProperty(nameof(OpdrachtId), nameof(OpdrachtId))]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Detailpagina : TabbedPage
     {
-
-        public string OpdrachtId
-        {
-            set
-            {
-                LoadTaken(value);
-                LoadKlant(value);
-                this.OpdrachtId2 = value;
-            }
-        }
-
-        public string OpdrachtId2;
+        public DataService ds;
+        public OpdrachtCompleet opdrachtCompleet;
 
         public Detailpagina(OpdrachtCompleet opdracht)
         {
-            InitializeComponent();
-            OpdrachtId = opdracht.id;
+            opdrachtCompleet = opdracht;
+            ds = new DataService();
+            LoadTaken(opdracht.id);
+            LoadKlant(opdracht.id);
+            //Details.BindingContext = opdracht;
 
+            InitializeComponent();
         }
 
         async void LoadTaken(string id)
@@ -46,7 +41,7 @@ namespace Zapp.Views
             }
         }
 
-        async void LoadKlant(string id)
+        private async void LoadKlant(string id)
         {
             var opdracht = await App.Database.GetOpdracht(id);
             var klant = await App.Database.GetKlant(opdracht.klant);
@@ -60,38 +55,36 @@ namespace Zapp.Views
             Taak taak = (Taak)checkbox.BindingContext;
             TaakPost postTaak = new TaakPost(taak);
 
-            Main main = new Main();
-            Taak newTaak = main.createTaak(postTaak);
-            main.saveDbTaken();
+            Taak newTaak = ds.createTaak(postTaak);
+            ds.SaveDbTaken();
         }
 
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            var opdracht = await App.Database.GetOpdracht(OpdrachtId2);
+            string dateTime = DateTime.Now.ToString();
+            var opdracht = await App.Database.GetOpdracht(opdrachtCompleet.id);
             if (opdracht.aangemeld == null)
             {
-                bool answer = await DisplayAlert("Aanmelden", "Wil je je nu aanmelden?", "Aanmelden", "Cancel");
+                bool answer = await DisplayAlert("Aanmelden", $"Tijd van aanmelden: {dateTime}", "Aanmelden", "Cancel");
                 if(answer == true)
                 {
-                    opdracht.aangemeld = "tijd van aanmelden";
+                    opdracht.aangemeld = dateTime;
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
-                    Main main = new Main();
-                    Opdracht newOpdracht = main.createOpdracht(postOpdracht);
-                    main.saveDbOpdrachten();
+                    Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
+                    ds.SaveDbOpdrachten();
                 }
             }
             else if (opdracht.afgemeld == null)
             {
-                bool answer = await DisplayAlert("Afmelden", "Wil je je nu afmelden?", "Afmelden", "Cancel");
+                bool answer = await DisplayAlert("Afmelden", $"Tijd van afmelden: {dateTime}", "Afmelden", "Cancel");
                 if (answer == true)
                 {
-                    opdracht.afgemeld = "tijd van afmelden";
+                    opdracht.afgemeld = dateTime;
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
-                    Main main = new Main();
-                    Opdracht newOpdracht = main.createOpdracht(postOpdracht);
-                    main.saveDbOpdrachten();
+                    Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
+                    ds.SaveDbOpdrachten();
                 }
             }
 

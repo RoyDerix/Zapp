@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Zapp.Models;
+using Zapp.Services;
 
 namespace Zapp.Views
 {
@@ -20,16 +21,23 @@ namespace Zapp.Views
 
         async public void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            AuthUser authUser = new AuthUser()
+            try
             {
-                user = username.Text,
-                password = password.Text
-            };
-            Main main = new Main();
-            User user = main.authUser(authUser);
-            await App.Database.SaveUser(user);
-            await Navigation.PopAsync();
-            await Navigation.PushAsync(new Homepage());
+                AuthUser authUser = new AuthUser()
+                {
+                    user = username.Text,
+                    password = password.Text
+                };
+                DataService ds = new DataService();
+                User user = ds.authUser(authUser);
+                await App.Database.SaveUser(user);
+                await Navigation.PopAsync();
+                await Navigation.PushAsync(new Homepage());
+            }
+            catch
+            {
+                await DisplayAlert("Fout", "Gebruikersnaam of wachtwoord is niet correct", "OK");
+            }
         }
     }
 }

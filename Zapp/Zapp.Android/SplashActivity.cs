@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zapp.Services;
 
 namespace Zapp.Droid
 {
@@ -29,10 +30,10 @@ namespace Zapp.Droid
         protected override void OnResume()
         {
             base.OnResume();
-            Main main = new Main();
-            main.saveDbOpdrachten();
-            main.saveDbKlanten();
-            main.saveDbTaken();
+            DataService ds = new DataService(); 
+            ds.SaveDbOpdrachten();
+            ds.SaveDbKlanten();
+            ds.SaveDbTaken();
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 

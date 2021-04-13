@@ -25,7 +25,7 @@ namespace Zapp.Data
 
         public Task<List<Opdracht>> GetOpdrachten(string id)
         {
-            return database.QueryAsync<Opdracht>("SELECT * FROM [Opdracht] WHERE [user] = " + id);
+            return database.QueryAsync<Opdracht>($"SELECT * FROM [Opdracht] WHERE [user] = '{id}'");
         }
 
         public Task<Opdracht> GetOpdracht(string id)
@@ -40,9 +40,21 @@ namespace Zapp.Data
             return database.UpdateAsync(opdracht);
         }
 
-        public Task<int> SaveOpdracht(Opdracht opdracht)
+        public async void SaveApiOpdrachten(OpdrachtenLijst opdrachtenlijst)
         {
-            return database.InsertAsync(opdracht);
+            var alleOpdrachten = opdrachtenlijst.entries;
+
+            foreach (var opdracht in alleOpdrachten)
+            {
+                try
+                {
+                    await database.InsertAsync(opdracht);
+                }
+                catch
+                {
+                    await database.UpdateAsync(opdracht);
+                }
+            }
         }
 
         public Task<List<Klant>> GetKlanten()
@@ -62,9 +74,21 @@ namespace Zapp.Data
             return database.UpdateAsync(klant);
         }
 
-        public Task<int> SaveKlant(Klant klant)
+        public async void SaveApiKlanten(KlantenLijst klantenlijst)
         {
-            return database.InsertAsync(klant);
+            var alleKlanten = klantenlijst.entries;
+
+            foreach (var klant in alleKlanten)
+            {
+                try
+                {
+                    await database.InsertAsync(klant);
+                }
+                catch
+                {
+                    await database.UpdateAsync(klant);
+                }
+            }
         }
 
         public Task<List<Taak>> GetAllTaken()
@@ -74,7 +98,7 @@ namespace Zapp.Data
         
         public Task<List<Taak>> GetTaken(string id)
         {
-            return database.QueryAsync<Taak>("SELECT * FROM [Taak] WHERE [opdracht] = " + id);
+            return database.QueryAsync<Taak>($"SELECT * FROM [Taak] WHERE [opdracht] = {id}");
         }
 
         public Task<Taak> GetTaak(string id)
@@ -84,14 +108,21 @@ namespace Zapp.Data
                             .FirstOrDefaultAsync();
         }
 
-        public Task<int> UpdateTaak(Taak taak)
+        public async void SaveApiTaken(TakenLijst takenlijst)
         {
-            return database.UpdateAsync(taak);
-        }
+            var alleTaken = takenlijst.entries;
 
-        public Task<int> SaveTaak(Taak taak)
-        {
-            return database.InsertAsync(taak);
+            foreach (var taak in alleTaken)
+            {
+                try
+                {
+                    await database.InsertAsync(taak);
+                }
+                catch
+                {
+                    await database.UpdateAsync(taak);
+                }
+            }
         }
 
         public Task<int> SaveUser(User user)
