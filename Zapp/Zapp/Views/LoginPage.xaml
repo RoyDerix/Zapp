@@ -1,12 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Zapp.Views.LoginPage">
+             x:Class="Zapp.Views.LoginPage"
+             Title="Login"
+             BackgroundImageSource="login_background.jpg">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="username" Placeholder="Username" />
-            <Entry x:Name="password" Placeholder="Password" IsPassword="True" />
-            <Button x:Name="login" Text="Login" Clicked="OnLoginButtonClicked" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Frame CornerRadius="30"
+                   IsClippedToBounds="True"
+                   Grid.Row="1"
+                   WidthRequest="300"
+                   HeightRequest="55"
+                   Padding="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Entry BackgroundColor="White" 
+                       x:Name="username" 
+                       Placeholder="Gebruikersnaam" 
+                       WidthRequest="260"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Large"/>
+            </Frame>
+            <Frame CornerRadius="30"
+                   IsClippedToBounds="True"
+                   Grid.Row="2"
+                   WidthRequest="300"
+                   HeightRequest="55"
+                   Padding="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Entry BackgroundColor="White" 
+                       x:Name="password" 
+                       Placeholder="Wachtwoord" 
+                       IsPassword="True"
+                       WidthRequest="260"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Large"/>
+            </Frame>
+            <Frame CornerRadius="30"
+                   IsClippedToBounds="True"
+                   Grid.Row="3"
+                   WidthRequest="150"
+                   HeightRequest="60"
+                   Padding="0"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Button x:Name="login" 
+                        Text="Login"
+                        FontSize="Medium"
+                        Clicked="OnLoginButtonClicked"/>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

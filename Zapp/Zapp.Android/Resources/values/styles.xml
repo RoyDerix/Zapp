@@ -10,10 +10,11 @@
     <!-- colorPrimary is used for the default action bar background -->
     <!--<item name="colorPrimary">#2196F3</item>-->
     <!-- colorPrimaryDark is used for the status bar -->
-    <!--<item name="colorPrimaryDark">#1976D2</item>-->
-    <!-- colorAccent is used as the default value for colorControlActivated
+	  <item name="colorPrimaryDark">#440a67</item>
+	  <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-    <!--<item name="colorAccent">#FF4081</item>-->
+      <item name="colorAccent">#b4aee8</item>
+
   </style>
 
 	<style name="SplashTheme" parent ="Theme.AppCompat.Light.NoActionBar">

@@ -45,6 +45,10 @@ namespace Zapp.Views
                     id = opdracht.id
                 });
             }
+            data.Sort(delegate (OpdrachtCompleet x, OpdrachtCompleet y)
+            {
+                return y.datum.CompareTo(x.datum);
+            });
             OpdrachtListView.ItemsSource = data;
         }
 

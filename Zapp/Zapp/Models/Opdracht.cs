@@ -5,17 +5,6 @@ using System.Text;
 
 namespace Zapp.Models
 {
-
-    //public class Taken
-    //{
-    //    public OpdrachtTaak value { get; set; }
-    //}
-
-    //public class OpdrachtTaak
-    //{
-    //    public string titel { get; set; }
-    //    public bool taskCompleted { get; set; }
-    //}
     public class OpdrachtCompleet
     {
         public string datum { get; set; }

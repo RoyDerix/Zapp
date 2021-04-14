@@ -15,8 +15,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="0"
-                          ColumnSpacing="0">
+                    <Grid Margin="5">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -27,8 +26,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Text="{Binding naam}" TextColor="Black" FontSize="Large" />
-                        <Label Grid.Column="1" Text="{Binding datum}" TextColor="Black" HorizontalOptions="Start"/>
+                        <Label Grid.Column="0" Text="{Binding naam}" FontSize="Large" />
+                        <Label Grid.Column="1" Text="{Binding datum}" HorizontalOptions="Start"/>
                         
                         <StackLayout Orientation="Horizontal" Grid.Row="1">
                             <Label Text="{Binding adres}" FontSize="16"/>

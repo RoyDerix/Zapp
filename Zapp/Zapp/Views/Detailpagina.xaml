@@ -3,7 +3,8 @@
             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
             x:Class="Zapp.Views.Detailpagina"
             Title="Details"
-            x:Name="Details">
+            x:Name="Details"
+            BarBackgroundColor="{StaticResource AppTertiaryColor}">
 
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="{Binding naam}" />
@@ -13,30 +14,87 @@
     <ContentPage Title="Taken">
         <StackLayout>
             <ListView x:Name="TakenListView"
-                  SelectionMode="None">
+                  SelectionMode="None"
+                      RowHeight="60">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding titel}" TextColor="Black" />
-                                <CheckBox IsChecked="{Binding uitgevoerd}" CheckedChanged="OnCheckBoxCheckedChanged" BindingContext="{Binding .}" />
-                            </StackLayout>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" 
+                                       Text="{Binding titel}" 
+                                       TextColor="Black" 
+                                       FontSize="Medium" 
+                                       VerticalTextAlignment="Center" />
+                                <CheckBox Grid.Column="1" 
+                                          IsChecked="{Binding uitgevoerd}" 
+                                          CheckedChanged="OnCheckBoxCheckedChanged" 
+                                          BindingContext="{Binding .}" 
+                                          Color="{StaticResource AppPrimaryColor}"/>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <Button Text="Aanmelden/Afmelden"
+                    FontSize="Large"
+                    HeightRequest="80"
                     x:Name="AanAfmelden"
                     Clicked="OnButtonClicked"/>
         </StackLayout>
     </ContentPage>
 
-    <ContentPage Title="Adres" x:Name="AdresLabel">
+    <ContentPage Title="Adres">
         <StackLayout>
-            <Label Text="{Binding naam}" />
-            <Label Text="{Binding adres}" />
-            <Label Text="{Binding postcode}" />
-            <Label Text="{Binding woonplaats}" />
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Padding="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Text="{Binding naam}" FontSize="Large" VerticalOptions="Center"/>
+                    <StackLayout Grid.Row="1" VerticalOptions="Center">
+                        <Label Text="{Binding adres}" FontSize="Large" VerticalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding postcode}" FontSize="Large" />
+                            <Label Text="{Binding woonplaats}" FontSize="Large" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Orientation="Horizontal" VerticalOptions="Center">
+                        <Label Text="Telefoon:" FontSize="Large" />
+                        <Label Text="{Binding telefoonnummer}" FontSize="Large" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="3" Orientation="Horizontal" VerticalOptions="Center">
+                        <Label Text="Planning:" FontSize="Large" />
+                        <Label Text="046-12345678" FontSize="Large" />
+                    </StackLayout>
+                </Grid>
+                <Button Text="Aanmelden/Afmelden"
+                        FontSize="Large"
+                        HeightRequest="80"
+                        x:Name="AanAfmelden2"
+                        Clicked="OnButtonClicked"
+                        VerticalOptions="End"
+                        Grid.Row="1"/>
+            </Grid>
+
         </StackLayout>
     </ContentPage>
 
