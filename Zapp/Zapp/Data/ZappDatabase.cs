@@ -40,7 +40,7 @@ namespace Zapp.Data
             return database.UpdateAsync(opdracht);
         }
 
-        public async void SaveApiOpdrachten(OpdrachtenLijst opdrachtenlijst)
+        public async Task<bool> SaveApiOpdrachten(OpdrachtenLijst opdrachtenlijst)
         {
             var alleOpdrachten = opdrachtenlijst.entries;
 
@@ -55,6 +55,7 @@ namespace Zapp.Data
                     await database.UpdateAsync(opdracht);
                 }
             }
+            return true;
         }
 
         public Task<List<Klant>> GetKlanten()
@@ -74,7 +75,7 @@ namespace Zapp.Data
             return database.UpdateAsync(klant);
         }
 
-        public async void SaveApiKlanten(KlantenLijst klantenlijst)
+        public async Task<bool> SaveApiKlanten(KlantenLijst klantenlijst)
         {
             var alleKlanten = klantenlijst.entries;
 
@@ -89,6 +90,7 @@ namespace Zapp.Data
                     await database.UpdateAsync(klant);
                 }
             }
+            return true;
         }
 
         public Task<List<Taak>> GetAllTaken()
@@ -108,7 +110,7 @@ namespace Zapp.Data
                             .FirstOrDefaultAsync();
         }
 
-        public async void SaveApiTaken(TakenLijst takenlijst)
+        public async Task<bool> SaveApiTaken(TakenLijst takenlijst)
         {
             var alleTaken = takenlijst.entries;
 
@@ -123,6 +125,7 @@ namespace Zapp.Data
                     await database.UpdateAsync(taak);
                 }
             }
+            return true;
         }
 
         public Task<int> SaveUser(User user)

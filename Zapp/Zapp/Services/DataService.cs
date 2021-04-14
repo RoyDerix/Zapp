@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Zapp.Models;
 
 namespace Zapp.Services
@@ -14,22 +15,25 @@ namespace Zapp.Services
             api = new ApiService();
         }
 
-        public void SaveDbOpdrachten()
+        public async Task<bool> SaveDbOpdrachten()
         {
             var opdrachtenlijst = api.getApiOpdrachten();
-            App.Database.SaveApiOpdrachten(opdrachtenlijst);
+            await App.Database.SaveApiOpdrachten(opdrachtenlijst);
+            return true;
         }
 
-        public void SaveDbKlanten()
+        public async Task<bool> SaveDbKlanten()
         {
             var klantenlijst = api.getApiKlanten();
-            App.Database.SaveApiKlanten(klantenlijst);
+            await App.Database.SaveApiKlanten(klantenlijst);
+            return true;
         }
 
-        public void SaveDbTaken()
+        public async Task<bool> SaveDbTaken()
         {
             var takenlijst = api.getApiTaken();
-            App.Database.SaveApiTaken(takenlijst);
+            await App.Database.SaveApiTaken(takenlijst);
+            return true;
         }
 
         public User authUser(AuthUser authUser)

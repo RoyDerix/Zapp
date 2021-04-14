@@ -8,40 +8,44 @@
         <ToolbarItem Text="Logout" Clicked="Logout" />
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="OpdrachtListView"
-              SelectionMode="None"
-              ItemTapped="OnItemTapped"
-              RowHeight="130">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Grid Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+    <Grid RowDefinitions="150, *">
+        <StackLayout BackgroundColor="{StaticResource AppTertiaryColor}"></StackLayout>
+        <Image Grid.Row="0" HeightRequest="120" VerticalOptions="Center" Source="zapp_logo.png"/>
 
-                        <Label Grid.Column="0" Text="{Binding naam}" FontSize="Large" />
-                        <Label Grid.Column="1" Text="{Binding datum}" HorizontalOptions="Start"/>
-                        
-                        <StackLayout Orientation="Horizontal" Grid.Row="1">
-                            <Label Text="{Binding adres}" FontSize="16"/>
-                            <Label Text="{Binding postcode}" FontSize="16"/>
-                            <Label Text="{Binding woonplaats}" FontSize="16"/>
-                        </StackLayout>
-                        
-                        <Label Grid.Row="2" Text="{Binding opmerkingen}"/>
+        <ListView x:Name="OpdrachtListView"
+                  SelectionMode="None"
+                  ItemTapped="OnItemTapped"
+                  RowHeight="130"
+                  Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    </Grid>
-                    
+                            <Label Grid.Column="0" Text="{Binding naam}" FontSize="Large" />
+                            <Label Grid.Column="1" Text="{Binding datum}" HorizontalOptions="Start"/>
 
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                            <StackLayout Orientation="Horizontal" Grid.Row="1">
+                                <Label Text="{Binding adres}" FontSize="16"/>
+                                <Label Text="{Binding postcode}" FontSize="16"/>
+                                <Label Text="{Binding woonplaats}" FontSize="16"/>
+                            </StackLayout>
+
+                            <Label Grid.Row="2" Text="{Binding opmerkingen}" TextColor="DarkGray"/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

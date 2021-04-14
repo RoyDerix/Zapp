@@ -27,23 +27,27 @@ namespace Zapp.Views
 
             foreach (var opdracht in opdrachten)
             {
-                string klant_id = opdracht.klant;
-                var klant = await App.Database.GetKlant(klant_id);
-                data.Add(new OpdrachtCompleet()
+                if(opdracht.aangemeld == null || opdracht.afgemeld == null)
                 {
-                    datum = opdracht.datum,
-                    aangemeld = opdracht.aangemeld,
-                    afgemeld = opdracht.afgemeld,
-                    opmerkingen = opdracht.opmerkingen,
-                    naam = klant.voornaam + " " + klant.achternaam,
-                    adres = klant.adres,
-                    postcode = klant.postcode,
-                    woonplaats = klant.woonplaats,
-                    telefoonnummer = klant.telefoonnummer,
-                    user = opdracht.user,
-                    _id = opdracht._id,
-                    id = opdracht.id
-                });
+                    string klant_id = opdracht.klant;
+                    var klant = await App.Database.GetKlant(klant_id);
+                    data.Add(new OpdrachtCompleet()
+                    {
+                        datum = opdracht.datum,
+                        aangemeld = opdracht.aangemeld,
+                        afgemeld = opdracht.afgemeld,
+                        opmerkingen = opdracht.opmerkingen,
+                        naam = klant.voornaam + " " + klant.achternaam,
+                        adres = klant.adres,
+                        postcode = klant.postcode,
+                        woonplaats = klant.woonplaats,
+                        telefoonnummer = klant.telefoonnummer,
+                        user = opdracht.user,
+                        _id = opdracht._id,
+                        id = opdracht.id
+                    });
+                }
+
             }
             data.Sort(delegate (OpdrachtCompleet x, OpdrachtCompleet y)
             {

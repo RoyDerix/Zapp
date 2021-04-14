@@ -7,6 +7,8 @@
 		<bitmap
 			android:src="@drawable/zapp_logo"
 			android:tileMode="disabled"
-			android:gravity="center"/>
+			android:gravity="center"
+			/>
+		
 	</item>
 </layer-list>

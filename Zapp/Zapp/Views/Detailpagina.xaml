@@ -43,8 +43,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Aanmelden/Afmelden"
-                    FontSize="Large"
+            <Button FontSize="Large"
                     HeightRequest="80"
                     x:Name="AanAfmelden"
                     Clicked="OnButtonClicked"/>
@@ -86,8 +85,7 @@
                         <Label Text="046-12345678" FontSize="Large" />
                     </StackLayout>
                 </Grid>
-                <Button Text="Aanmelden/Afmelden"
-                        FontSize="Large"
+                <Button FontSize="Large"
                         HeightRequest="80"
                         x:Name="AanAfmelden2"
                         Clicked="OnButtonClicked"

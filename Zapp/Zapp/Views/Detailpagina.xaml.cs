@@ -25,6 +25,21 @@ namespace Zapp.Views
             InitializeComponent();
             LoadTaken(opdracht.id);
             Details.BindingContext = opdracht;
+            if (opdracht.aangemeld == null)
+            {
+                AanAfmelden.Text = "Aanmelden";
+                AanAfmelden2.Text = "Aanmelden";
+            }
+            else if (opdracht.afgemeld == null)
+            {
+                AanAfmelden.Text = "Afmelden";
+                AanAfmelden2.Text = "Afmelden";
+            }
+            else
+            {
+                AanAfmelden.IsVisible = false;
+                AanAfmelden2.IsVisible = false;
+            }
         }
 
         async void LoadTaken(string id)
@@ -40,14 +55,14 @@ namespace Zapp.Views
             }
         }
 
-        void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
+        private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             var checkbox = (CheckBox)sender;
             Taak taak = (Taak)checkbox.BindingContext;
             TaakPost postTaak = new TaakPost(taak);
 
             Taak newTaak = ds.createTaak(postTaak);
-            ds.SaveDbTaken();
+            await ds.SaveDbTaken();
         }
 
         async void OnButtonClicked(object sender, EventArgs e)
@@ -63,7 +78,10 @@ namespace Zapp.Views
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
                     Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
-                    ds.SaveDbOpdrachten();
+                    await ds.SaveDbOpdrachten();
+
+                    AanAfmelden.Text = "Afmelden";
+                    AanAfmelden2.Text = "Afmelden";
                 }
             }
             else if (opdracht.afgemeld == null)
@@ -75,7 +93,12 @@ namespace Zapp.Views
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
                     Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
-                    ds.SaveDbOpdrachten();
+                    await ds.SaveDbOpdrachten();
+
+                    opdrachtCompleet.afgemeld = dateTime;
+
+                    await Navigation.PushAsync(new Homepage());
+
                 }
             }
 

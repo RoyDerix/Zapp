@@ -27,11 +27,11 @@ namespace Zapp.Droid
         }
 
         // Launches the startup task
-        protected override void OnResume()
+        protected async override void OnResume()
         {
             base.OnResume();
             DataService ds = new DataService(); 
-            ds.SaveDbOpdrachten();
+            await ds.SaveDbOpdrachten();
             ds.SaveDbKlanten();
             ds.SaveDbTaken();
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));

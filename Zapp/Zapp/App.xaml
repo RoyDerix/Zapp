@@ -12,7 +12,7 @@
         <Color x:Key="AppBackgroundColor">white</Color>
         <Color x:Key="PrimaryColor">Black</Color>
         <Color x:Key="SecondaryColor">White</Color>
-        <Color x:Key="TertiaryColor">Silver</Color>
+        <Color x:Key="TertiaryColor">silver</Color>
 
         <!-- Implicit styles -->
         <Style TargetType="ContentPage"
@@ -39,8 +39,6 @@
                     Value="{StaticResource AppPrimaryColor}" />
             <Setter Property="TextColor"
                     Value="{StaticResource SecondaryColor}" />
-            <Setter Property="CornerRadius"
-                    Value="5" />
         </Style>
 
     </Application.Resources>
