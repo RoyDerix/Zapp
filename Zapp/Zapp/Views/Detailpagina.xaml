@@ -33,9 +33,9 @@
                                        TextColor="Black" 
                                        FontSize="Medium" 
                                        VerticalTextAlignment="Center" />
-                                <CheckBox Grid.Column="1" 
+                                <CheckBox Grid.Column="1"
                                           IsChecked="{Binding uitgevoerd}" 
-                                          CheckedChanged="OnCheckBoxCheckedChanged" 
+                                          CheckedChanged="OnCheckBoxCheckedChanged"
                                           BindingContext="{Binding .}" 
                                           Color="{StaticResource AppPrimaryColor}"/>
                             </Grid>

@@ -32,8 +32,8 @@ namespace Zapp.Droid
             base.OnResume();
             DataService ds = new DataService(); 
             await ds.SaveDbOpdrachten();
-            ds.SaveDbKlanten();
-            ds.SaveDbTaken();
+            await ds.SaveDbKlanten();
+            await ds.SaveDbTaken();
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 

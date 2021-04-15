@@ -58,14 +58,26 @@ namespace Zapp.Views
         private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             var checkbox = (CheckBox)sender;
-            Taak taak = (Taak)checkbox.BindingContext;
-            TaakPost postTaak = new TaakPost(taak);
 
-            Taak newTaak = ds.createTaak(postTaak);
-            await ds.SaveDbTaken();
+            if (opdrachtCompleet.aangemeld != null)
+            {
+                Taak taak = (Taak)checkbox.BindingContext;
+                TaakPost postTaak = new TaakPost(taak);
+
+                Taak newTaak = ds.createTaak(postTaak);
+                await ds.SaveDbTaken();
+            }
+            else
+            {
+                checkbox.IsChecked = false;
+                if (checkbox.IsChecked == true)
+                {
+                    await DisplayAlert("Fout", "Meld je aan, voordat je aan een taak begint", "OK");
+                }
+            }
         }
 
-        async void OnButtonClicked(object sender, EventArgs e)
+        private async void OnButtonClicked(object sender, EventArgs e)
         {
             string dateTime = DateTime.Now.ToString();
             var opdracht = await App.Database.GetOpdracht(opdrachtCompleet.id);
@@ -75,6 +87,7 @@ namespace Zapp.Views
                 if(answer == true)
                 {
                     opdracht.aangemeld = dateTime;
+                    opdrachtCompleet.aangemeld = dateTime;
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
                     Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
@@ -90,13 +103,13 @@ namespace Zapp.Views
                 if (answer == true)
                 {
                     opdracht.afgemeld = dateTime;
+                    opdrachtCompleet.afgemeld = dateTime;
 
                     OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
                     Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
                     await ds.SaveDbOpdrachten();
 
                     opdrachtCompleet.afgemeld = dateTime;
-
                     await Navigation.PushAsync(new Homepage());
 
                 }

@@ -31,8 +31,8 @@ namespace Zapp.Views
                 DataService ds = new DataService();
                 User user = ds.authUser(authUser);
                 await App.Database.SaveUser(user);
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new Homepage());
+                Navigation.InsertPageBefore(new Homepage(), this);
+                await Navigation.PopAsync().ConfigureAwait(false);
             }
             catch
             {

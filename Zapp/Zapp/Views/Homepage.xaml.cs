@@ -31,6 +31,7 @@ namespace Zapp.Views
                 {
                     string klant_id = opdracht.klant;
                     var klant = await App.Database.GetKlant(klant_id);
+
                     data.Add(new OpdrachtCompleet()
                     {
                         datum = opdracht.datum,
