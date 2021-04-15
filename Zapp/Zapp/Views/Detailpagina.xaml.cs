@@ -44,15 +44,8 @@ namespace Zapp.Views
 
         async void LoadTaken(string id)
         {
-            try
-            {
-                var taken = await App.Database.GetTaken(id);
-                TakenListView.ItemsSource = taken;
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Failed to load opdracht.");
-            }
+            var taken = await App.Database.GetTaken(id);
+            TakenListView.ItemsSource = taken;
         }
 
         private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -79,42 +72,53 @@ namespace Zapp.Views
 
         private async void OnButtonClicked(object sender, EventArgs e)
         {
-            string dateTime = DateTime.Now.ToString();
             var opdracht = await App.Database.GetOpdracht(opdrachtCompleet.id);
+
             if (opdracht.aangemeld == null)
             {
-                bool answer = await DisplayAlert("Aanmelden", $"Tijd van aanmelden: {dateTime}", "Aanmelden", "Cancel");
-                if(answer == true)
-                {
-                    opdracht.aangemeld = dateTime;
-                    opdrachtCompleet.aangemeld = dateTime;
-
-                    OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
-                    Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
-                    await ds.SaveDbOpdrachten();
-
-                    AanAfmelden.Text = "Afmelden";
-                    AanAfmelden2.Text = "Afmelden";
-                }
+                Aanmelden(opdracht);
             }
             else if (opdracht.afgemeld == null)
             {
-                bool answer = await DisplayAlert("Afmelden", $"Tijd van afmelden: {dateTime}", "Afmelden", "Cancel");
-                if (answer == true)
-                {
-                    opdracht.afgemeld = dateTime;
-                    opdrachtCompleet.afgemeld = dateTime;
-
-                    OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
-                    Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
-                    await ds.SaveDbOpdrachten();
-
-                    opdrachtCompleet.afgemeld = dateTime;
-                    await Navigation.PushAsync(new Homepage());
-
-                }
+                Afmelden(opdracht);
             }
+        }
 
+        private async void Aanmelden(Opdracht opdracht)
+        {
+            string dateTime = DateTime.Now.ToString();
+            bool answer = await DisplayAlert("Aanmelden", $"Tijd van aanmelden: {dateTime}", "Aanmelden", "Cancel");
+            if (answer == true)
+            {
+                opdracht.aangemeld = dateTime;
+                opdrachtCompleet.aangemeld = dateTime;
+
+                OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
+                Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
+                await ds.SaveDbOpdrachten();
+
+                AanAfmelden.Text = "Afmelden";
+                AanAfmelden2.Text = "Afmelden";
+            }
+        }
+
+        private async void Afmelden(Opdracht opdracht)
+        {
+            string dateTime = DateTime.Now.ToString();
+            bool answer = await DisplayAlert("Afmelden", $"Tijd van afmelden: {dateTime}", "Afmelden", "Cancel");
+            if (answer == true)
+            {
+                opdracht.afgemeld = dateTime;
+                opdrachtCompleet.afgemeld = dateTime;
+
+                OpdrachtPost postOpdracht = new OpdrachtPost(opdracht);
+                Opdracht newOpdracht = ds.createOpdracht(postOpdracht);
+                await ds.SaveDbOpdrachten();
+
+                opdrachtCompleet.afgemeld = dateTime;
+
+                Application.Current.MainPage = new NavigationPage(new Homepage());
+            }
         }
     }
 }

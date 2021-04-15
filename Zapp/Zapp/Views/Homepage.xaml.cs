@@ -72,8 +72,9 @@ namespace Zapp.Views
             if (answer == true)
             {
                 App.Database.Logout();
-                await Navigation.PopAsync();
-                await Navigation.PushAsync(new LoginPage());
+                await Navigation.PopToRootAsync();
+                Navigation.InsertPageBefore(new LoginPage(), this);
+                await Navigation.PopAsync().ConfigureAwait(false);
             }
 
         }

@@ -58,6 +58,12 @@ namespace Zapp.Data
             return true;
         }
 
+        public async Task<bool> ClearAllOpdrachten()
+        {
+            await database.QueryAsync<Opdracht>("DELETE FROM [Opdracht]");
+            return true;
+        }
+
         public Task<List<Klant>> GetKlanten()
         {
             return database.Table<Klant>().ToListAsync();
@@ -90,6 +96,12 @@ namespace Zapp.Data
                     await database.UpdateAsync(klant);
                 }
             }
+            return true;
+        }
+
+        public async Task<bool> ClearAllKlanten()
+        {
+            await database.QueryAsync<Klant>("DELETE FROM [Klant]");
             return true;
         }
 
@@ -128,6 +140,12 @@ namespace Zapp.Data
             return true;
         }
 
+        public async Task<bool> ClearAllTaken()
+        {
+            await database.QueryAsync<Taak>("DELETE FROM [Taak]");
+            return true;
+        }
+
         public Task<int> SaveUser(User user)
         {
             try
@@ -143,8 +161,8 @@ namespace Zapp.Data
         public void Logout()
         {
             var user = database.QueryAsync<User>("DELETE FROM [User]");
-
         }
+
         public Task<List<User>> GetUsers()
         {
             return database.Table<User>().ToListAsync();

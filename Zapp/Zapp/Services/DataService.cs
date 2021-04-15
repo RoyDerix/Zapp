@@ -18,6 +18,7 @@ namespace Zapp.Services
         public async Task<bool> SaveDbOpdrachten()
         {
             var opdrachtenlijst = api.getApiOpdrachten();
+            await App.Database.ClearAllOpdrachten();
             await App.Database.SaveApiOpdrachten(opdrachtenlijst);
             return true;
         }
@@ -25,6 +26,7 @@ namespace Zapp.Services
         public async Task<bool> SaveDbKlanten()
         {
             var klantenlijst = api.getApiKlanten();
+            await App.Database.ClearAllKlanten();
             await App.Database.SaveApiKlanten(klantenlijst);
             return true;
         }
@@ -32,6 +34,7 @@ namespace Zapp.Services
         public async Task<bool> SaveDbTaken()
         {
             var takenlijst = api.getApiTaken();
+            await App.Database.ClearAllTaken();
             await App.Database.SaveApiTaken(takenlijst);
             return true;
         }

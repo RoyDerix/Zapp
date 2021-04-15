@@ -34,7 +34,7 @@ namespace Zapp
             var users = Database.GetUsers(); 
             if (users.Result.Count == 0)
             {
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new LoginPage();
             }
             else
             {
