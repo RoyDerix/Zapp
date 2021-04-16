@@ -15,7 +15,6 @@ namespace Zapp
 
         static ZappDatabase database;
 
-        // Create the database connection as a singleton.
         public static ZappDatabase Database
         {
             get

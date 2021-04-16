@@ -43,12 +43,13 @@ namespace Zapp.Views
                         postcode = klant.postcode,
                         woonplaats = klant.woonplaats,
                         telefoonnummer = klant.telefoonnummer,
+                        lat = klant.lat,
+                        lon = klant.lon,
                         user = opdracht.user,
                         _id = opdracht._id,
                         id = opdracht.id
                     });
                 }
-
             }
             data.Sort(delegate (OpdrachtCompleet x, OpdrachtCompleet y)
             {
@@ -76,7 +77,6 @@ namespace Zapp.Views
                 Navigation.InsertPageBefore(new LoginPage(), this);
                 await Navigation.PopAsync().ConfigureAwait(false);
             }
-
         }
     }
 }

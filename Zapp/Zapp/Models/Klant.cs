@@ -14,6 +14,8 @@ namespace Zapp.Models
         public string postcode { get; set; }
         public string woonplaats { get; set; }
         public string telefoonnummer { get; set; }
+        public string lat { get; set; }
+        public string lon { get; set; }
         [PrimaryKey]
         public string _id { get; set; }
     }

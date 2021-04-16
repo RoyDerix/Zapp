@@ -8,6 +8,7 @@ using Zapp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Zapp.Services;
+using Xamarin.Forms.Maps;
 
 namespace Zapp.Views
 {
@@ -23,14 +24,22 @@ namespace Zapp.Views
             ds = new DataService();
 
             InitializeComponent();
-            LoadTaken(opdracht.id);
+
             Details.BindingContext = opdracht;
-            if (opdracht.aangemeld == null)
+
+            LoadTaken();
+            LoadKaart();
+            LoadButton();
+        }
+
+        private void LoadButton()
+        {
+            if (opdrachtCompleet.aangemeld == null)
             {
                 AanAfmelden.Text = "Aanmelden";
                 AanAfmelden2.Text = "Aanmelden";
             }
-            else if (opdracht.afgemeld == null)
+            else if (opdrachtCompleet.afgemeld == null)
             {
                 AanAfmelden.Text = "Afmelden";
                 AanAfmelden2.Text = "Afmelden";
@@ -42,9 +51,24 @@ namespace Zapp.Views
             }
         }
 
-        async void LoadTaken(string id)
+        private void LoadKaart()
         {
-            var taken = await App.Database.GetTaken(id);
+            double lat = Convert.ToDouble(opdrachtCompleet.lat);
+            double lon = Convert.ToDouble(opdrachtCompleet.lon);
+            Position position = new Position(lat, lon);
+            Pin pinAdres = new Pin()
+            {
+                Type = PinType.Place,
+                Label = "Woonadres",
+                Position = position
+            };
+            Kaart.Pins.Add(pinAdres);
+            Kaart.MoveToRegion(MapSpan.FromCenterAndRadius(pinAdres.Position, Distance.FromMeters(3000)));
+        }
+
+        async void LoadTaken()
+        {
+            var taken = await App.Database.GetTaken(opdrachtCompleet.id);
             TakenListView.ItemsSource = taken;
         }
 
