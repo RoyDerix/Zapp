@@ -20,16 +20,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Margin="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="5"
+                              RowDefinitions="*, *, *"
+                              ColumnDefinitions="3*, *">
 
                             <Label Grid.Column="0" Text="{Binding naam}" FontSize="Large" />
                             <Label Grid.Column="1" Text="{Binding datum}" HorizontalOptions="Start"/>

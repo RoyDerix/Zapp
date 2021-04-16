@@ -9,15 +9,10 @@
             <StackLayout BackgroundColor="Transparent"></StackLayout>
             <Image Grid.Row="0" HeightRequest="120" VerticalOptions="Center" Source="zapp_logo.png"/>
 
-            <Grid Grid.Row="1" Background="login_background.jpg">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="120"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" 
+                  Background="login_background.jpg"
+                  RowDefinitions="60, 60, 120"
+                  ColumnDefinitions="*">
                 <Frame CornerRadius="30"
                    IsClippedToBounds="True"
                    Grid.Row="0"

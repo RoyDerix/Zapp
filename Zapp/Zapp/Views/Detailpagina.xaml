@@ -19,14 +19,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <Grid Margin="5"
+                                  RowDefinitions="*"
+                                  ColumnDefinitions="3*, *">
 
                                 <Label Grid.Column="0" 
                                        Text="{Binding titel}" 
@@ -52,28 +47,28 @@
 
     <ContentPage Title="Adres">
         <StackLayout>
-            <Grid VerticalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Padding="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Label Text="{Binding naam}" FontSize="Large" VerticalOptions="Center"/>
+            <Grid VerticalOptions="FillAndExpand"
+                  RowDefinitions="auto, *">
+                <Grid Grid.Row="0" 
+                      Padding="5"
+                      RowDefinitions="2*, 4*, 2*, *"
+                      ColumnDefinitions="*">
+
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="user.png" WidthRequest="25"/>
+                        <Label Text="{Binding naam}" FontSize="Large" VerticalOptions="Center"/>
+                    </StackLayout>
                     <StackLayout Grid.Row="1" VerticalOptions="Center">
-                        <Label Text="{Binding adres}" FontSize="Large" VerticalOptions="Center"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding postcode}" FontSize="Large" />
-                            <Label Text="{Binding woonplaats}" FontSize="Large" />
+                            <Image Source="home.png" WidthRequest="25"/>
+                            <Label Text="{Binding adres}" FontSize="Large" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="" WidthRequest="25"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding postcode}" FontSize="Large" />
+                                <Label Text="{Binding woonplaats}" FontSize="Large" />
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Grid.Row="2" Orientation="Horizontal" VerticalOptions="Center">

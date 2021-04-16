@@ -18,7 +18,7 @@ namespace Zapp.Views
         public OpdrachtCompleet opdrachtCompleet;
 
         public Detailpagina(OpdrachtCompleet opdracht)
-        {
+        { 
             opdrachtCompleet = opdracht;
             ds = new DataService();
 
