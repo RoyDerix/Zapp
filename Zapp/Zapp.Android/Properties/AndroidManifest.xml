@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.zapp" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
 	<application android:label="Zapp.Android" android:theme="@style/MainTheme" android:icon="@drawable/zapp_logo">
-		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDVZ2TZVRasC9BNCZbmu4IazVwMOU6kSfo" />
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="API_KEY" />
 		<uses-library android:name="org.apache.http.legacy" android:required="false" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
