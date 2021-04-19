@@ -17,3 +17,8 @@ De volgende technologieën heb ik gebruikt:
 - .Net / Xamarin Forms
 - Cockpit CMS
 - API
+
+## Andere projecten:
+
+Verrukkulluk! https://github.com/RoyDerix/Verrukkulluk  
+VacIT! https://github.com/RoyDerix/Vacit
