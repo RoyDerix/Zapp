@@ -10,7 +10,7 @@ ZAPP is een mobiele app waarmee zorgverleners hun taken bij cliënten effectieve
 
 ## Technologieën
 
-De applicatie is gebouwd in C#, in Xamarin Forms. De data komt via API van Cockpit CMS.
+De applicatie is gebouwd in C#, in Xamarin Forms. De data komt via API van Cockpit CMS.  
 De volgende technologieën heb ik gebruikt:
 
 - C#
